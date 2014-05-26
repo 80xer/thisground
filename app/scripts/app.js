@@ -12,10 +12,6 @@ angular.module('thisgroundApp', [
         templateUrl: 'partials/main',
         controller: 'MainCtrl'
       })
-      .when('/main', {
-        templateUrl: 'partials/main_bak',
-        controller: 'MainBakCtrl'
-      })
       .when('/login', {
         templateUrl: 'partials/login',
         controller: 'LoginCtrl'

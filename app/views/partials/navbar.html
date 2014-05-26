@@ -1,11 +1,27 @@
-<div class="header" ng-controller="NavbarCtrl">
-  <ul class="nav nav-pills pull-right">
-    <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
-        <a ng-href="{{item.link}}">{{item.title}}</a>
-    </li>
-    <li ng-hide="currentUser" ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li>
-    <li ng-hide="currentUser" ng-class="{active: isActive('/signup')}"><a href="/signup">Sign up</a></li>
-    <li ng-show="currentUser" ng-class="{active: isActive('/logout')}"><a href="" ng-click="logout()">Logout</a></li>
+<div ng-controller="NavbarCtrl">
+<h1><a href="##">로고</a></h1>
+<div class="gnb_category">
+  <a href="##" class="gnb_txt active">PlAYGROUND</a>
+  <a href="##" class="gnb_txt">FEATURED</a>
+  <a href="##" class="gnb_txt">LATEST</a>
+  <span class="ipt_box1"><input type="text" placeholder="xxx"></span>
+</div>
+<div ng-hide="currentUser" class="login_off" style="display:block;">
+  <a href="/signup" class="btn_signup">SIGNUP</a>
+  <a href="/login" class="btn_login">LOGIN</a>
+</div>
+<div ng-show="currentUser" class="login_on" ng-mouseleave="showInfoBox(false)">
+  <a class="btn_img btn_notice" href="##" ng-mouseenter="showInfoBox(false)"><span></span></a>
+  <a class="btn_img btn_message" href="##" ng-mouseenter="showInfoBox(false)"><span></span></a>
+  <a class="btn_img btn_upload" href="##" ng-mouseenter="showInfoBox(false)"><span>Upload</span></a>
+  <a class="btn_profile" href="" ng-mouseenter="showInfoBox(true)">
+    <span></span>
+  </a>
+  <!-- 프로필 이미지가 있을때  <a class="btn_profile" href="##"><span style="background-image:url(../profile/1.jpg);"></span></a> -->
+  <ul class="logon_infobox" ng-show="showInfo">
+    <li><a href="##">MYGROUND</a></li>
+    <li><a href="##">SETTING</a></li>
+    <li><a href="##" ng-click="logout()">LOGOUT</a></li>
   </ul>
-  <h3 class="text-muted">thisground</h3>
+</div>
 </div>

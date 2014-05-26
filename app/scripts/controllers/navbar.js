@@ -9,7 +9,9 @@ angular.module('thisgroundApp')
       'title': 'Settings',
       'link': '/settings'
     }];
-    
+
+    $scope.showInfo = false;
+
     $scope.logout = function() {
       Auth.logout()
       .then(function() {
@@ -20,4 +22,8 @@ angular.module('thisgroundApp')
     $scope.isActive = function(route) {
       return route === $location.path();
     };
+
+    $scope.showInfoBox = function(flag) {
+      $scope.showInfo = flag;
+    }
   });

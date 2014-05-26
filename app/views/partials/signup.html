@@ -1,66 +1,103 @@
-<div ng-include="'partials/navbar.html'"></div>
+<div class="body_wrap">
+  <!-- 상당 공통 -->
+  <header>
+    <div class="gnb_wraptop" ng-include="'partials/navbar'"></div>
+  </header>
+  <!-- 콘텐츠 -->
+  <article class="content">
+    <form action="" name="form" class="content_signupwrap" ng-submit="register(form)" novalidate>
+      <ul class="sns_signup">
+        <li class="sup_facebook"><a href="">Sign up with Facebook</a></li>
+        <li class="sup_twitter"><a href="">Sign up with Twitter</a></li>
+      </ul>
 
-<div class="row">
-  <div class="col-sm-12">
-    <h1>Sign up</h1>
-  </div>
-  <div class="col-sm-12">
-    <form class="form" name="form" ng-submit="register(form)" novalidate>
-
-      <div class="form-group" ng-class="{ 'has-success': form.name.$valid && submitted,
-                                          'has-error': form.name.$invalid && submitted }">
-        <label>Name</label>
-
-        <input type="text" name="name" class="form-control" ng-model="user.name"
-               required/>
-        <p class="help-block" ng-show="form.name.$error.required && submitted">
-          A name is required
-        </p>
-      </div>   
-
-      <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
-                                          'has-error': form.email.$invalid && submitted }">
-        <label>Email</label>
-
-        <input type="email" name="email" class="form-control" ng-model="user.email"
-               required
-               mongoose-error/>
-        <p class="help-block" ng-show="form.email.$error.email && submitted">
-          Doesn't look like a valid email.
-        </p>
-        <p class="help-block" ng-show="form.email.$error.required && submitted">
-          What's your email address?
-        </p>
-        <p class="help-block" ng-show="form.email.$error.mongoose">
-          {{ errors.email }}
-        </p>
+      <ul class="we_signup">
+        <li class="help-wrap">
+          <span class="help-span" ng-show="(form.email.$error.email || form.email.$error.required || form.email.$error.mongoose) && submitted">
+            <p class="help-block" ng-show="form.email.$error.email && submitted">
+              Doesn't look like a valid email.
+            </p>
+            <p class="help-block" ng-show="form.email.$error.required && submitted">
+              What's your email address?
+            </p>
+            <p class="help-block" ng-show="form.email.$error.mongoose">
+              {{ errors.email }}
+            </p>
+          </span>
+        </li>
+        <li>
+          <label>
+            <span class="lab_txt">E-mail address</span>
+            <span class="ipt_ty1 w1">
+              <input name="email" type="email" ng-model="user.email" required/>
+            </span>
+          </label>
+        </li>
+        <li class="help-wrap">
+          <span class="help-span" ng-show="form.name.$error.required && submitted">
+            <p class="help-block" ng-show="form.name.$error.required && submitted">
+              A name is required
+            </p>
+          </span>
+        </li>
+        <li>
+          <label>
+            <span class="lab_txt">name</span>
+            <span class="ipt_ty1 w1">
+              <input name="name" type="text" ng-model="user.name" required/>
+            </span>
+          </label>
+        </li>
+        <li class="help-wrap">
+          <span class="help-span" ng-show="(form.password.$error.minlength || form.password.$error.required || form.password.$error.mongoose) && submitted">
+            <p class="help-block"
+               ng-show="(form.password.$error.minlength || form.password.$error.required) && submitted">
+              Password must be at least 3 characters.
+            </p>
+            <p class="help-block" ng-show="form.password.$error.mongoose">
+              {{ errors.password }}
+            </p>
+          </span>
+        </li>
+        <li>
+          <label>
+            <span class="lab_txt">Password</span>
+            <span class="ipt_ty1 w1">
+              <input name="password" type="password" ng-model="user.password" ng-minlength="3" required/>
+            </span>
+          </label>
+        </li>
+        <li class="help-wrap">
+          <span class="help-span" ng-show="(form.password.$error.minlength || form.password.$error.required || form.password.$error.mongoose) && submitted">
+            <p class="help-block"
+               ng-show="form.confirm_password.$error.required && submitted">
+              Field required!
+            </p>
+            <p class="help-block" ng-show="form.confirm_password.$error.passwordVerify && submitted">
+              Fields are not equal!
+            </p>
+          </span>
+        </li>
+        <li>
+          <label>
+            <span class="lab_txt">Password verification</span>
+            <span class="ipt_ty1 w1">
+              <input name="confirm_password" type="text" ng-model="user.password_verify" required data-password-verify="user.password"/>
+            </span>
+          </label>
+        </li>
+        <li><label><span class="lab_txt">Residence of Area</span><span class="ipt_ty1 w1"><input type="text" placeholder=""></span></label></li>
+        <li><label><span class="lab_txt">Invitation code</span><span class="ipt_ty1 w1"><input type="text" placeholder=""></span></label></li>
+        <li class="rowend"><label><span class="lab_txt"></span><span class="ipt_ty1 w1"></span></label></li>
+      </ul>
+      <div class="btn_group">
+        <button  type="submit" class="btn_signupok">SIGN UP</button>
       </div>
-
-      <div class="form-group" ng-class="{ 'has-success': form.password.$valid && submitted,
-                                          'has-error': form.password.$invalid && submitted }">
-        <label>Password</label>
-        
-        <input type="password" name="password" class="form-control" ng-model="user.password"
-               ng-minlength="3"
-               required
-               mongoose-error/>
-        <p class="help-block"
-           ng-show="(form.password.$error.minlength || form.password.$error.required) && submitted">
-          Password must be at least 3 characters.
-        </p>
-        <p class="help-block" ng-show="form.password.$error.mongoose">
-          {{ errors.password }}
-        </p>
-      </div>
-
-      <button class="btn btn-lg btn-primary" type="submit">Sign up</button>
     </form>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-sm-12">
-    <hr>
-    Have an account? <a href="/login" class="text-center new-account">Log in.</a>
-  </div>
+  </article>
+  <!-- 하단 -->
+  <footer>
+    <div class="footer_wrap">
+    </div>
+  </footer>
 </div>

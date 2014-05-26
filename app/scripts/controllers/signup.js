@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('thisgroundApp')
-  .controller('SignupCtrl', function ($scope, Auth, $location) {
+  .controller('SignupCtrl', function ($scope, $rootScope, Auth, $location) {
+    $rootScope.bodyClass = 'signup';
     $scope.user = {};
     $scope.errors = {};
 
